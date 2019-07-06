@@ -1,0 +1,123 @@
+var mymap = L.map('mapid').setView(
+[53.3, -7.7], 13 
+);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: 'OpenStreetMapData',
+maxZoom: 18
+}).addTo(mymap); 
+
+//var marker = L.marker([51.5, -0.09]).addTo(mymap);
+
+// загрузка файла
+
+function loadJSON(url, callback) { 
+var xobj = new XMLHttpRequest();
+xobj.overrideMimeType("application/json");
+xobj.open('GET', url, true); // Replace 'my_data' with the path to your file
+xobj.onreadystatechange = function () {
+if (xobj.readyState == 4 && xobj.status == "200") {
+// Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+callback(xobj.responseText);
+}
+};
+xobj.send(null); 
+}
+
+var url = "coords.json";
+
+loadJSON(url, function(response) {
+// Parse JSON string into object
+var coordsObj = JSON.parse(response);
+console.log(coordsObj);
+DrawCoords(coordsObj);
+});
+
+function DrawCoords(coordsObj) {
+var date1 = Object.keys(coordsObj)[0];
+//var date2 = Object.keys(coordsObj)[1];
+console.log(date1);
+
+
+// получаем пользователя (первого) для полученной даты
+var date1users = coordsObj[date1]["users"];
+console.log(date1users);
+var date1user1key = Object.keys(date1users)[0];
+console.log(date1user1key);
+var date1user1 = date1users[date1user1key];
+console.log(date1user1);
+
+
+//координаты начальной точки для ползователя
+var startCoords = date1user1["start_coordinates"];
+console.log(startCoords);
+var marker = L.marker([ startCoords["latitude"], startCoords["longitude"] ]).addTo(mymap);
+
+
+// координаты конечной точки для пользователя
+var endCoords = date1user1["end_coordinates"];
+console.log(endCoords);
+var marker = L.marker([ endCoords["latitude"], endCoords["longitude"] ]).addTo(mymap);
+
+var polygon = L.polygon([
+[ startCoords["latitude"], startCoords["longitude"]],
+[ endCoords["latitude"], endCoords["longitude"]],
+]).addTo(mymap);
+
+
+
+
+
+{
+"19_05_2019" : {
+"users" : {
+"user1_uid" : {
+"end_coordinates" : {
+"latitude" : 53.2734,
+"longitude" : -7.77832031
+},
+"history" : [ {
+"latitude" : 53.2734,
+"longitude" : -7.77832031,
+"order" : 1,
+"time" : "2017-08-22T06:11:00.000Z"
+}, {
+"latitude" : 55.634,
+"longitude" : -4.031,
+"order" : 2,
+"time" : "2017-08-22T06:11:00.000Z"
+} ],
+"login" : "user1",
+"start_coordinates" : {
+"latitude" : 55.634,
+"longitude" : -4.031
+}
+},
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Диспетчер</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+crossorigin=""></script>
+
+
+</head>
+<body>
+<div id="mapid"></div>
+<link rel="stylesheet" href="tinkmap.css">
+<link rel="stylesheet" href="tinkmap.css">
+<script src="tinkmap.js"></script>
+
+</body>
+</html>
