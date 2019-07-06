@@ -65,3 +65,5 @@ var coords = [ [ startCoords["latitude"], startCoords["longitude"]],
 var polyline = L.polyline(coords, {color: 'red'}).addTo(mymap);
 
 }
+
+
