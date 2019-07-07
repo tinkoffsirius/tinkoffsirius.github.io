@@ -14,12 +14,6 @@ callback(xobj.responseText);
 xobj.send(null); 
 }
 
-var url = "https://tinkoffsiriusmobile.firebaseio.com/.json";
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-attribution: 'OpenStreetMapData',
-maxZoom: 18
-}).addTo(mymap); 
-
 
 loadJSON(url, function(response) {
 // Parse JSON string into object
@@ -37,6 +31,14 @@ console.log(date1);
 var mymap = L.map('mapid').setView(
 coordsObj[date1]["history"], 6 
 );
+  
+
+var url = "https://tinkoffsiriusmobile.firebaseio.com/.json";
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: 'OpenStreetMapData',
+maxZoom: 18
+}).addTo(mymap); 
+
 
 // получаем пользователя (первого) для полученной даты
 var date1users = coordsObj[date1]["users"];
