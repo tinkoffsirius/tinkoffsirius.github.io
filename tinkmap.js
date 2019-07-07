@@ -1,13 +1,5 @@
 
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-attribution: 'OpenStreetMapData',
-maxZoom: 18
-}).addTo(mymap); 
-
-//var marker = L.marker([51.5, -0.09]).addTo(mymap);
-
-
 function loadJSON(url, callback) { 
 var xobj = new XMLHttpRequest();
 xobj.overrideMimeType("application/json");
@@ -23,6 +15,11 @@ xobj.send(null);
 }
 
 var url = "https://tinkoffsiriusmobile.firebaseio.com/.json";
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: 'OpenStreetMapData',
+maxZoom: 18
+}).addTo(mymap); 
+
 
 loadJSON(url, function(response) {
 // Parse JSON string into object
