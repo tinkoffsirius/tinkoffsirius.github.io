@@ -38,7 +38,7 @@ console.log(date1);
   
  
 var mymap = L.map('mapid').setView(
-coordsObj, 6 
+coordsObj[0], 6 
 );
 
 // получаем пользователя (первого) для полученной даты
