@@ -1,4 +1,11 @@
-
+var mymap = L.map('mapid').setView(
+[54, 3], 6 
+);
+  
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: 'OpenStreetMapData',
+maxZoom: 18
+}).addTo(mymap); 
 
 function loadJSON(url, callback) { 
 var xobj = new XMLHttpRequest();
@@ -26,16 +33,7 @@ function DrawCoords(coordsObj) {
 var date1 = Object.keys(coordsObj)[0];
 //var date2 = Object.keys(coordsObj)[1];
 console.log(date1);
-  
  
-var mymap = L.map('mapid').setView(
-coordsObj[date1]["history"], 6 
-);
-  
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-attribution: 'OpenStreetMapData',
-maxZoom: 18
-}).addTo(mymap); 
 
 var url = "https://tinkoffsiriusmobile.firebaseio.com/.json";
 
