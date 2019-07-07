@@ -32,12 +32,12 @@ var mymap = L.map('mapid').setView(
 coordsObj[date1]["history"], 6 
 );
   
-
-var url = "https://tinkoffsiriusmobile.firebaseio.com/.json";
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: 'OpenStreetMapData',
 maxZoom: 18
 }).addTo(mymap); 
+
+var url = "https://tinkoffsiriusmobile.firebaseio.com/.json";
 
 
 // получаем пользователя (первого) для полученной даты
