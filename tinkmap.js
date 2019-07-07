@@ -1,7 +1,5 @@
-var mymap = L.map('mapid').setView(
-[43, 39], 6 
-);
-  
+var mymap = L.map('mapid').setView([0,0],5);
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: 'OpenStreetMapData',
 maxZoom: 18
@@ -33,28 +31,21 @@ function refresh(){
 }
 
 
-
-
 function DrawCoords(coordsObj) {
-var date1 = Object.keys(coordsObj)[0];
-//var date2 = Object.keys(coordsObj)[1];
-console.log(date1);
  
-
-
-
 // получаем пользователя (первого) для полученной даты
-var date1users = coordsObj[date1]["users"];
-console.log(date1users);
-var date1user1key = Object.keys(date1users)[0];
+var users = coordsObj["users"];
+console.log(users);
+var date1user1key = Object.keys(users)[0];
 console.log(date1user1key);
-var date1user1 = date1users[date1user1key];
+var date1user1 = users[date1user1key];
 console.log(date1user1);
 
 
 //координаты начальной точки для ползователя
 var startCoords = date1user1["start_coordinates"];
 console.log(startCoords);
+mymap.setView([startCoords['latitude'],startCoords['longitude']], 8)
 var marker = L.marker([ startCoords["latitude"], startCoords["longitude"] ]).addTo(mymap);
 
 
