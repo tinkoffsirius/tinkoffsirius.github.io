@@ -21,6 +21,10 @@ callback(xobj.responseText);
 xobj.send(null); 
 }
 
+function refresh(){
+	var inputEl = document.getElementById("date_input");
+	alert(inputEl.value);
+}
 
 loadJSON(url, function(response) {
 // Parse JSON string into object
@@ -64,5 +68,4 @@ var coords = [ [ startCoords["latitude"], startCoords["longitude"]],
 var polyline = L.polyline(coords, {color: 'red'}).addTo(mymap);
 
 }
-
 
