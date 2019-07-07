@@ -1,6 +1,4 @@
-var mymap = L.map('mapid').setView(
-[43.4, 39.9], 6 
-);
+
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: 'OpenStreetMapData',
@@ -37,7 +35,11 @@ function DrawCoords(coordsObj) {
 var date1 = Object.keys(coordsObj)[0];
 //var date2 = Object.keys(coordsObj)[1];
 console.log(date1);
-
+  
+ 
+var mymap = L.map('mapid').setView(
+coordsObj[date1], 6 
+);
 
 // получаем пользователя (первого) для полученной даты
 var date1users = coordsObj[date1]["users"];
