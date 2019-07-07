@@ -1,5 +1,5 @@
 var mymap = L.map('mapid').setView(
-[54, 3], 6 
+[43, 39], 6 
 );
   
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
