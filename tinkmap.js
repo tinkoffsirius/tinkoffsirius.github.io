@@ -20,11 +20,9 @@ callback(xobj.responseText);
 xobj.send(null); 
 }
 
-var url = "https://tinkoffsiriusmobile.firebaseio.com/.json";
-
-
 function refresh(){
 	var inputEl = document.getElementById("date_input");
+	var url = "https://tinkoffsiriusmobile.firebaseio.com/" + inputEl.value + ".json";
 	loadJSON(url, function(response) {
 	// Parse JSON string into object
 		var coordsObj = JSON.parse(response);
