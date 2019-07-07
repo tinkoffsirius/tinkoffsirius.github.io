@@ -11,7 +11,6 @@ function loadJSON(url, callback) {
 var xobj = new XMLHttpRequest();
 xobj.overrideMimeType("application/json");
 xobj.open('GET', url, true); // Replace 'my_data' with the path to your file
-
 xobj.onreadystatechange = function () {
 if (xobj.readyState == 4 && xobj.status == "200") {
 // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
@@ -21,17 +20,22 @@ callback(xobj.responseText);
 xobj.send(null); 
 }
 
+var url = "https://tinkoffsiriusmobile.firebaseio.com/.json";
+
+
 function refresh(){
 	var inputEl = document.getElementById("date_input");
-	alert(inputEl.value);
+	loadJSON(url, function(response) {
+	// Parse JSON string into object
+		var coordsObj = JSON.parse(response);
+		console.log(coordsObj);
+		DrawCoords(coordsObj);
+	});
+
 }
 
-loadJSON(url, function(response) {
-// Parse JSON string into object
-var coordsObj = JSON.parse(response);
-console.log(coordsObj);
-DrawCoords(coordsObj);
-});
+
+
 
 function DrawCoords(coordsObj) {
 var date1 = Object.keys(coordsObj)[0];
@@ -39,7 +43,6 @@ var date1 = Object.keys(coordsObj)[0];
 console.log(date1);
  
 
-var url = "https://tinkoffsiriusmobile.firebaseio.com/.json";
 
 
 // получаем пользователя (первого) для полученной даты
@@ -68,4 +71,3 @@ var coords = [ [ startCoords["latitude"], startCoords["longitude"]],
 var polyline = L.polyline(coords, {color: 'red'}).addTo(mymap);
 
 }
-
