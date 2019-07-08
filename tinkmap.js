@@ -50,10 +50,12 @@ function drawUser(date1user1){
         var marker = L.marker([coords["latitude"], coords["longitude"]]);
 
     }
+	
+	if (endCoords == null) {
 
     hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
 
-
+]
     var polyline = L.polyline(hiCo, {
         color: 'red'
     }).addTo(mymap);
@@ -63,18 +65,17 @@ function drawUser(date1user1){
 function DrawCoords(coordsObj) {
 
     // получаем пользователя (userOrder) для полученной даты
-    var userOrder = 3;
     var users = coordsObj["users"];
-	var userIds = Object.keys(users);
+	userIds = Object.keys(users);
 	
+	for(var elem in userIds){
+		var userOrder = userIds[elem];
+		console.log(userOrder);
 	
-    console.log(users);
-    var date1user1key = Object.keys(users)[userOrder];
-    console.log(date1user1key);
-    var date1user1 = users[date1user1key];
-    console.log(date1user1);
-	drawUser(date1user1);
-
-
+		var date1user1 = users[userOrder];
+		console.log(date1user1);
+		drawUser(date1user1);
+	
+	}
     
 }
