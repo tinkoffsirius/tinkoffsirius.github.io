@@ -42,10 +42,9 @@ var date1user1 = users[date1user1key];
 console.log(date1user1);
 
 
-//координаты начальной точки для ползователя
 var startCoords = date1user1["start_coordinates"];
 console.log(startCoords);
-mymap.setView([startCoords['latitude'],startCoords['longitude']], 13)
+mymap.setView([startCoords['latitude'],startCoords['longitude']], 18)
 var marker = L.marker([ startCoords["latitude"], startCoords["longitude"] ]).addTo(mymap);
 
 var endCoords = date1user1["end_coordinates"];
@@ -53,25 +52,20 @@ console.log(endCoords);
 var marker = L.marker([ endCoords["latitude"], endCoords["longitude"] ]).addTo(mymap);
 
 var hiCo = [];
+
+hiCo.push([startCoords["latitude"], startCoords["longitude"]]);
+
 var historyCoords = date1user1["history"];
 for(var i in historyCoords) {
 	var coords = historyCoords[i];
-	hiCo.push([ coords["latitude"], coords["longitude"]], [ startCoords["latitude"], startCoords["longitude"]], [ endCoords["latitude"], endCoords["longitude"] ]);
+	hiCo.push([coords["latitude"], coords["longitude"]]);
 	var marker = L.marker([ coords["latitude"], coords["longitude"] ]);
-	
-	//{latitude: "43.4002055"
-	//	longitude: "39.9668623"
-	//	order: "2"
-	//	time: "15:10:26"}
-	
-	// [57.23, 47.33]
+
 }
 
-// координаты конечной точки для пользователя
+hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
 
 
-//var coords = [ [ startCoords["latitude"], startCoords["longitude"]], [ coords["latitude"], coords["longitude"] ],
-//[ endCoords["latitude"], endCoords["longitude"]]]; 
 var polyline = L.polyline(hiCo, {color: 'red'}).addTo(mymap);
 
 }
