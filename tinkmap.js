@@ -27,16 +27,16 @@ function refresh(){
 		console.log(coordsObj);
 		DrawCoords(coordsObj);
 	});
-
 }
 
 
 function DrawCoords(coordsObj) {
  
-// получаем пользователя (первого) для полученной даты
+// получаем пользователя (userOrder) для полученной даты
+var userOrder = 3;
 var users = coordsObj["users"];
 console.log(users);
-var date1user1key = Object.keys(users)[0];
+var date1user1key = Object.keys(users)[userOrder];
 console.log(date1user1key);
 var date1user1 = users[date1user1key];
 console.log(date1user1);
@@ -45,18 +45,33 @@ console.log(date1user1);
 //координаты начальной точки для ползователя
 var startCoords = date1user1["start_coordinates"];
 console.log(startCoords);
-mymap.setView([startCoords['latitude'],startCoords['longitude']], 8)
+mymap.setView([startCoords['latitude'],startCoords['longitude']], 13)
 var marker = L.marker([ startCoords["latitude"], startCoords["longitude"] ]).addTo(mymap);
 
-
-// координаты конечной точки для пользователя
 var endCoords = date1user1["end_coordinates"];
 console.log(endCoords);
 var marker = L.marker([ endCoords["latitude"], endCoords["longitude"] ]).addTo(mymap);
 
-var coords = [ [ startCoords["latitude"], startCoords["longitude"]], 
-[ endCoords["latitude"], endCoords["longitude"]] 
-]; 
-var polyline = L.polyline(coords, {color: 'red'}).addTo(mymap);
+var hiCo = [];
+var historyCoords = date1user1["history"];
+for(var i in historyCoords) {
+	var coords = historyCoords[i];
+	hiCo.push([ coords["latitude"], coords["longitude"]], [ startCoords["latitude"], startCoords["longitude"]], [ endCoords["latitude"], endCoords["longitude"] ]);
+	var marker = L.marker([ coords["latitude"], coords["longitude"] ]);
+	
+	//{latitude: "43.4002055"
+	//	longitude: "39.9668623"
+	//	order: "2"
+	//	time: "15:10:26"}
+	
+	// [57.23, 47.33]
+}
+
+// координаты конечной точки для пользователя
+
+
+//var coords = [ [ startCoords["latitude"], startCoords["longitude"]], [ coords["latitude"], coords["longitude"] ],
+//[ endCoords["latitude"], endCoords["longitude"]]]; 
+var polyline = L.polyline(hiCo, {color: 'red'}).addTo(mymap);
 
 }
