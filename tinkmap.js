@@ -1,6 +1,7 @@
 var mymap = L.map('mapid').setView([0, 0], 5);
 
 var markers = [];
+var polylines = [];
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'OpenStreetMapData',
@@ -21,10 +22,17 @@ function loadJSON(url, callback) {
 }
 
 function refresh() {	
+
 	for(var marker in markers){
 		markers[marker].remove();
 	}
 	markers=[];
+	
+	for(var polyline in polylines){
+		polylines[polyline].remove();
+	}
+	polylines=[];
+	
     var inputEl = document.getElementById("date_input");
     var url = "https://tinkoffsiriusmobile.firebaseio.com/" + inputEl.value + ".json";
     loadJSON(url, function(response) {
@@ -70,7 +78,7 @@ function drawUser(date1user1){
     var polyline = L.polyline(hiCo, {
         color: "#"+((1<<24)*Math.random()|0).toString(16) 
     }).addTo(mymap);
-
+	polylines.push(polyline);
 }
 
 function DrawCoords(coordsObj) {
