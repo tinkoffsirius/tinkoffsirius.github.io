@@ -1,5 +1,7 @@
 var mymap = L.map('mapid').setView([0, 0], 5);
 
+var markers = [];
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'OpenStreetMapData',
     maxZoom: 18
@@ -18,7 +20,11 @@ function loadJSON(url, callback) {
     xobj.send(null);
 }
 
-function refresh() {
+function refresh() {	
+	for(var marker in markers){
+		markers[marker.remove();
+	}
+	markers=[];
     var inputEl = document.getElementById("date_input");
     var url = "https://tinkoffsiriusmobile.firebaseio.com/" + inputEl.value + ".json";
     loadJSON(url, function(response) {
