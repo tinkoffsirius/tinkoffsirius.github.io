@@ -51,12 +51,14 @@ function drawUser(date1user1){
 
     }
 	
+	var endCoords = date1user1["end_coordinates"];
+	
 	if (endCoords != null) {
-    var endCoords = date1user1["end_coordinates"];
     console.log(endCoords);
     var marker = L.marker([endCoords["latitude"], endCoords["longitude"]]).addTo(mymap);
-	hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
+	//hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
 	}
+
 
     var polyline = L.polyline(hiCo, {
         color: "#"+((1<<24)*Math.random()|0).toString(16) 
