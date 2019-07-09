@@ -1,5 +1,9 @@
 var mymap = L.map('mapid').setView([0, 0], 5);
 
+//var markers = [];
+var polylines = [];
+
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'OpenStreetMapData',
     maxZoom: 18
@@ -17,8 +21,18 @@ function loadJSON(url, callback) {
     };
     xobj.send(null);
 }
+function refresh() {	
 
-function refresh() {
+	for(var marker in markers){
+		markers[marker].remove();
+	}
+	markers=[];
+	
+	for(var polyline in polylines){
+		polylines[polyline].remove();
+	}
+	polylines=[];
+	
     var inputEl = document.getElementById("date_input");
     var url = "https://tinkoffsiriusmobile.firebaseio.com/" + inputEl.value + ".json";
     loadJSON(url, function(response) {
@@ -34,11 +48,11 @@ function drawUser(date1user1){
     console.log(startCoords);
     mymap.setView([startCoords['latitude'], startCoords['longitude']], 18)
     var marker = L.marker([startCoords["latitude"], startCoords["longitude"]]).addTo(mymap);
-
+	markers.push(marker);
     /*var endCoords = date1user1["end_coordinates"];
     console.log(endCoords);
     var marker = L.marker([endCoords["latitude"], endCoords["longitude"]]).addTo(mymap);*/
-
+	
     var hiCo = [];
 
     hiCo.push([startCoords["latitude"], startCoords["longitude"]]);
@@ -60,11 +74,20 @@ function drawUser(date1user1){
 	}
 
 
+  var colorLine = ['red', 'green', 'blue', 'black', 'yellow', 'purple', 'white', 'orange', 'brown', 'pink', 'violet', 'grey'];
+	
+	/*for(var usColor in colorLine){
+	var usc = colorLine[usColor];		
+	}*/
+	var colorLineIndex = Math.floor( (Math.random() * colorLine.length) + 0);
+	var colorLineInd = colorLine[colorLineIndex];
+	
     var polyline = L.polyline(hiCo, {
-        color: "#"+((1<<24)*Math.random()|0).toString(16) 
+        color: colorLineInd 
     }).addTo(mymap);
-
+	polylines.push(polyline);
 }
+
 
 function DrawCoords(coordsObj) {
     // получаем пользователя (userOrder) для полученной даты
