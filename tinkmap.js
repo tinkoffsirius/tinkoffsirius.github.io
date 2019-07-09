@@ -59,7 +59,7 @@ function drawUser(date1user1){
 	}
 
     var polyline = L.polyline(hiCo, {
-        color: '#fcfcf7'
+        color: "#"+((1<<24)*Math.random()|0).toString(16); 
     }).addTo(mymap);
 
 }
