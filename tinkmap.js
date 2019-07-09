@@ -49,9 +49,6 @@ function drawUser(date1user1){
     mymap.setView([startCoords['latitude'], startCoords['longitude']], 18)
     var marker = L.marker([startCoords["latitude"], startCoords["longitude"]]).addTo(mymap);
 	markers.push(marker);
-    /*var endCoords = date1user1["end_coordinates"];
-    console.log(endCoords);
-    var marker = L.marker([endCoords["latitude"], endCoords["longitude"]]).addTo(mymap);*/
 	
     var hiCo = [];
 
@@ -70,15 +67,12 @@ function drawUser(date1user1){
 	if (endCoords != null) {
     console.log(endCoords);
     var marker = L.marker([endCoords["latitude"], endCoords["longitude"]]).addTo(mymap);
-	//hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
+	hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
 	}
 
 
   var colorLine = ['red', 'green', 'blue', 'black', 'yellow', 'purple', 'white', 'orange', 'brown', 'pink', 'violet', 'grey'];
-	
-	/*for(var usColor in colorLine){
-	var usc = colorLine[usColor];		
-	}*/
+
 	var colorLineIndex = Math.floor( (Math.random() * colorLine.length) + 0);
 	var colorLineInd = colorLine[colorLineIndex];
 	
