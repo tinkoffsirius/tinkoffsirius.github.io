@@ -59,7 +59,7 @@ function drawUser(date1user1){
 	}
 
     var polyline = L.polyline(hiCo, {
-        color: 'red'
+        color: '#fcfcf7'
     }).addTo(mymap);
 
 }
