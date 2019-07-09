@@ -3,6 +3,7 @@ var mymap = L.map('mapid').setView([0, 0], 5);
 var markers = [];
 var polylines = [];
 
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'OpenStreetMapData',
     maxZoom: 18
@@ -74,9 +75,18 @@ function drawUser(date1user1){
 	
 	markers.push(marker);
 	}
-
+	/*var randomColor = "#"+((1<<24)*Math.random()|0).toString(16);
+	console.log(randomColor);*/
+	var colorLine = ['red', 'green', 'blue', 'black', 'yellow', 'purple', 'white', 'orange', 'brown', 'pink', 'violet', 'grey'];
+	
+	/*for(var usColor in colorLine){
+	var usc = colorLine[usColor];		
+	}*/
+	var colorLineIndex = Math.floor( (Math.random() * colorLine.length) + 0);
+	var colorLineInd = colorLine[colorLineIndex];
+	
     var polyline = L.polyline(hiCo, {
-        color: "#"+((1<<24)*Math.random()|0).toString(16) 
+        color: colorLineInd 
     }).addTo(mymap);
 	polylines.push(polyline);
 }
