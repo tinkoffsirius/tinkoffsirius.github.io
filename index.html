@@ -3,6 +3,8 @@
  <head>
   <meta charset="utf-8">
   <title>Диспетчер</title>
+  
+
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -15,14 +17,19 @@
 
  </head>
  <body>
-  
+ 
+   
   <div class="form-group">
-<h3>Введите дату</h3>
 <label for="inp_1">Введите дату:</label>
   <input type="text" class="form-control" id="date_input">
 </div>
 <button onclick="refresh()"  class="btn btn-primary">Обновить</button>
 
+<table id="my-table">
+  <tr><td><b>Представители:</b></td></tr>
+</table>
+  
+  
   <div id="mapid"></div>
   <link rel="stylesheet" href="tinkmap.css">
   <link rel="stylesheet" href="tinkmap.css">
