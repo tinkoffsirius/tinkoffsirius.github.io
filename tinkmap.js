@@ -71,7 +71,8 @@ function drawUser(date1user1){
 	if (endCoords != null) {
     console.log(endCoords);
     var marker = L.marker([endCoords["latitude"], endCoords["longitude"]]).addTo(mymap);
-	hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
+	//hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
+	}
 	
 	markers.push(marker);
 	}
@@ -92,19 +93,36 @@ function drawUser(date1user1){
 }
 
 function DrawCoords(coordsObj) {
-
     // получаем пользователя (userOrder) для полученной даты
     var users = coordsObj["users"];
 	userIds = Object.keys(users);
+	var userOrder;
 	
 	for(var elem in userIds){
-		var userOrder = userIds[elem];
+		userOrder = userIds[elem];
 		console.log(userOrder);
 	
 		var date1user1 = users[userOrder];
 		console.log(date1user1);
 		drawUser(date1user1);
+		
+		function addRow(tableID) {
+  // Get a reference to the table
+  let tableRef = document.getElementById(tableID);
+
+  // Insert a row at the end of the table
+  let newRow = tableRef.insertRow(-1);
+
+  // Insert a cell in the row at index 0
+  let newCell = newRow.insertCell(0);
+
+  // Append a text node to the cell
+  let newText = document.createTextNode(userOrder);
+  newCell.appendChild(newText);
+}
+
+// Call addRow() with the table's ID
+addRow('my-table');
 	
 	}
-    
 }
