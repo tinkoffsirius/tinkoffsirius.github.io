@@ -52,10 +52,9 @@ function drawUser(date1user1){
     }
 	
 	if (endCoords == null) {
-
     hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
+	}
 
-]
     var polyline = L.polyline(hiCo, {
         color: 'red'
     }).addTo(mymap);
