@@ -22,7 +22,7 @@ function loadJSON(url, callback) {
 
 function refresh() {	
 	for(var marker in markers){
-		markers[marker.remove();
+		markers[marker].remove();
 	}
 	markers=[];
     var inputEl = document.getElementById("date_input");
