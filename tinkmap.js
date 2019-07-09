@@ -40,7 +40,7 @@ function drawUser(date1user1){
     console.log(startCoords);
     mymap.setView([startCoords['latitude'], startCoords['longitude']], 18)
     var marker = L.marker([startCoords["latitude"], startCoords["longitude"]]).addTo(mymap);
-
+	markers.push(marker);
     /*var endCoords = date1user1["end_coordinates"];
     console.log(endCoords);
     var marker = L.marker([endCoords["latitude"], endCoords["longitude"]]).addTo(mymap);*/
@@ -54,7 +54,7 @@ function drawUser(date1user1){
         var coords = historyCoords[i];
         hiCo.push([coords["latitude"], coords["longitude"]]);
         var marker = L.marker([coords["latitude"], coords["longitude"]]);
-
+		markers.push(marker);
     }
 	
 	var endCoords = date1user1["end_coordinates"];
@@ -62,9 +62,10 @@ function drawUser(date1user1){
 	if (endCoords != null) {
     console.log(endCoords);
     var marker = L.marker([endCoords["latitude"], endCoords["longitude"]]).addTo(mymap);
-	//hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
+	hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
+	
+	markers.push(marker);
 	}
-
 
     var polyline = L.polyline(hiCo, {
         color: "#"+((1<<24)*Math.random()|0).toString(16) 
