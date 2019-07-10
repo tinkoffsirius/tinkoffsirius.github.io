@@ -26,7 +26,7 @@ function loadJSON(url, callback) {
 function deleteRow(tableID) {
 	let tableRef = document.getElementById(tableID);
 	//Table.innerHTML = "my-table";
-	tableRef.innerHTML = "Представители:";
+	tableRef.innerHTML = "";
 
 }
 function refresh() {	
