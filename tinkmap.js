@@ -28,6 +28,7 @@ function refresh() {
 	}
 	markers=[];
 	
+	
 	for(var polyline in polylines){
 		polylines[polyline].remove();
 	}
@@ -116,4 +117,11 @@ function DrawCoords(coordsObj) {
 addRow('my-table');
 	
 	}
+}
+
+
+function deleteRow(tableID) {
+	let tableRef = document.getElementById(tableID);
+	Table.innerHTML = "";
+
 }
