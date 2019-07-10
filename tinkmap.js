@@ -21,6 +21,14 @@ function loadJSON(url, callback) {
     };
     xobj.send(null);
 }
+
+
+function deleteRow(tableID) {
+	let tableRef = document.getElementById(tableID);
+	//Table.innerHTML = "my-table";
+	tableRef.innerHTML = "Представители:";
+
+}
 function refresh() {	
 
 	for(var marker in markers){
@@ -33,6 +41,8 @@ function refresh() {
 		polylines[polyline].remove();
 	}
 	polylines=[];
+	
+	deleteRow('my-table');
 	
     var inputEl = document.getElementById("date_input");
     var url = "https://tinkoffsiriusmobile.firebaseio.com/" + inputEl.value + ".json";
@@ -120,8 +130,3 @@ addRow('my-table');
 }
 
 
-function deleteRow(tableID) {
-	let tableRef = document.getElementById(tableID);
-	Table.innerHTML = "";
-
-}
