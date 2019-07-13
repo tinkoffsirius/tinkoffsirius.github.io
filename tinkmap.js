@@ -79,6 +79,11 @@ function drawUser(date1user1){
     console.log(endCoords);
     var marker = L.marker([endCoords["latitude"], endCoords["longitude"]]).addTo(mymap);
 	hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
+		
+	var login = date1user1["login"]
+        var popupText = "user login:" + "<br>" + login;
+        marker.bindPopup(popupText).openPopup();
+
 	}
 
 
