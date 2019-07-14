@@ -31,7 +31,7 @@ function deleteRow(tableID) {
 }
 function refresh() {	
 	
-	setTimeout(refresh, 10000);
+	setTimeout(refresh, 60000);
 	
 	for(var marker in markers){
 		markers[marker].remove();
@@ -92,13 +92,13 @@ function drawUser(date1user1){
 
 	}
 	
-  var colorLine = ['red', 'green', 'blue', 'black', 'yellow', 'purple', 'orange', 'brown', 'pink', 'violet', 'grey'];
+    /*var colorLine = ['red', 'green', 'blue', 'black', 'yellow', 'purple', 'orange', 'brown', 'pink', 'violet', 'grey'];
 
 	var colorLineIndex = Math.floor( (Math.random() * colorLine.length) + 0);
-	var colorLineInd = colorLine[colorLineIndex];
-	
+	var colorLineInd = colorLine[colorLineIndex];*/
+	var colorLine = '#'+('00000'+(Math.random()*(1<<24)|0).toString(16)).slice(-6)
     var polyline = L.polyline(hiCo, {
-        color: colorLineInd 
+        color: colorLine 
     }).addTo(mymap);
 	polylines.push(polyline);
 }
