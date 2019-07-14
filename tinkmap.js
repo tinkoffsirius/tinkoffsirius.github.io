@@ -30,7 +30,9 @@ function deleteRow(tableID) {
 
 }
 function refresh() {	
-
+	
+	setTimeout(refresh, 10000);
+	
 	for(var marker in markers){
 		markers[marker].remove();
 	}
@@ -72,22 +74,25 @@ function drawUser(date1user1){
         var marker = L.marker([coords["latitude"], coords["longitude"]]);
 
     }
-	
 	var endCoords = date1user1["end_coordinates"];
-	
+	var myIcon = L.icon({
+		iconUrl: 'maker.png',
+		iconSize: [38, 38],
+		iconAnchor: [19, 34], 
+	});	
 	if (endCoords != null) {
     console.log(endCoords);
-    var marker = L.marker([endCoords["latitude"], endCoords["longitude"]]).addTo(mymap);
+    var marker = L.marker([endCoords["latitude"], endCoords["longitude"]], {icon: myIcon}).addTo(mymap);
+	markers.push(marker)
 	hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
-		
+	
 	var login = date1user1["login"]
         var popupText = "user login:" + "<br>" + login;
         marker.bindPopup(popupText).openPopup();
 
 	}
-
-
-  var colorLine = ['red', 'green', 'blue', 'black', 'yellow', 'purple', 'white', 'orange', 'brown', 'pink', 'violet', 'grey'];
+	
+  var colorLine = ['red', 'green', 'blue', 'black', 'yellow', 'purple', 'orange', 'brown', 'pink', 'violet', 'grey'];
 
 	var colorLineIndex = Math.floor( (Math.random() * colorLine.length) + 0);
 	var colorLineInd = colorLine[colorLineIndex];
@@ -114,6 +119,10 @@ function DrawCoords(coordsObj) {
 		drawUser(date1user1);
 		
 		function addRow(tableID) {
+		
+		var login = date1user1["login"];
+		console.log(login);
+        var loginText = "user login:" + login;
   // Get a reference to the table
   let tableRef = document.getElementById(tableID);
 
@@ -126,12 +135,13 @@ function DrawCoords(coordsObj) {
   // Append a text node to the cell
   let newText = document.createTextNode(userOrder);
   newCell.appendChild(newText);
+  let new2Text = document.createTextNode(loginText);
+  newCell.appendChild(new2Text);
 }
 
 // Call addRow() with the table's ID
 addRow('my-table');
 	
 	}
+	
 }
-
-
