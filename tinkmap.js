@@ -71,12 +71,19 @@ function drawUser(date1user1){
     for (var i in historyCoords) {
         var coords = historyCoords[i];
         hiCo.push([coords["latitude"], coords["longitude"]]);
-        var marker = L.marker([coords["latitude"], coords["longitude"]]);
-
+        
+		var Icon = L.icon({
+		iconUrl: 'marker2.png',
+		iconSize: [25, 38],
+		iconAnchor: [12, 38], 
+	});	
+		var lastItem = historyCoords[historyCoords.length - 1];
+		var marker = L.marker([lastItem["latitude"], lastItem["longitude"]],{icon: Icon}).addTo(mymap);
+		markers.push(marker);
     }
 	var endCoords = date1user1["end_coordinates"];
 	var myIcon = L.icon({
-		iconUrl: 'maker.png',
+		iconUrl: 'marker.png',
 		iconSize: [38, 38],
 		iconAnchor: [19, 34], 
 	});	
@@ -92,10 +99,6 @@ function drawUser(date1user1){
 
 	}
 	
-    /*var colorLine = ['red', 'green', 'blue', 'black', 'yellow', 'purple', 'orange', 'brown', 'pink', 'violet', 'grey'];
-
-	var colorLineIndex = Math.floor( (Math.random() * colorLine.length) + 0);
-	var colorLineInd = colorLine[colorLineIndex];*/
 	var colorLine = '#'+('00000'+(Math.random()*(1<<24)|0).toString(16)).slice(-6)
     var polyline = L.polyline(hiCo, {
         color: colorLine 
@@ -122,7 +125,27 @@ function DrawCoords(coordsObj) {
 		
 		var login = date1user1["login"];
 		console.log(login);
-        var loginText = "user login:" + login;
+        var loginText =  '  ' + 'User login: ' + login;
+		
+		var urla = "https://tinkoffsiriusmobile.firebaseio.com/agents.json";
+    loadJSON(urla, function(response) {
+        // Parse JSON string into object
+        var coordsObj = JSON.parse(response);
+        var agOrder;
+		
+		for(var elem in coordsObj){
+		agOrder = coordsObj[elem];
+		
+			if (login == elem) {
+			console.log(agOrder)
+		var agentname = "  " + "User name: " + agOrder
+		let new3Text = document.createTextNode(agentname);
+		newCell.appendChild(new3Text);
+  			}
+		}
+		
+		}); 
+	
   // Get a reference to the table
   let tableRef = document.getElementById(tableID);
 
@@ -137,11 +160,13 @@ function DrawCoords(coordsObj) {
   newCell.appendChild(newText);
   let new2Text = document.createTextNode(loginText);
   newCell.appendChild(new2Text);
-}
+  
+  
+		}
+
 
 // Call addRow() with the table's ID
 addRow('my-table');
-	
+
 	}
-	
 }
