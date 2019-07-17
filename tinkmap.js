@@ -156,8 +156,7 @@ function DrawCoords(coordsObj) {
   let newCell = newRow.insertCell(0);
 
   // Append a text node to the cell
-  let newText = document.createTextNode(userOrder);
-  newCell.appendChild(newText);
+  
   let new2Text = document.createTextNode(loginText);
   newCell.appendChild(new2Text);
   
