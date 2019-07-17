@@ -4,12 +4,9 @@
 
   <meta charset="utf-8">
   <title>Диспетчер</title>
-  
-		
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  <link rel="stylesheet" href="  https://www.cdn-tinkoff.ru/platform/compiled/desktopLanding.805e6cb3d54a2e2356f5.css"
    crossorigin=""/>
-
+   
   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
   crossorigin=""></script>
@@ -18,7 +15,7 @@
  </head>
  <body>
 
- <p><img width="360px" height="100px" src="logo.png"></p> 
+ <p><img width="360px" height="100px" src="logo.jpg"></p> 
  <table cellpadding="1" cellspacing="0" width="100%">
 		<tr>
 			<td>
@@ -26,8 +23,8 @@
 				<label for="inp_1">Введите дату:</label>
 				<input type="text" class="form-control" id="date_input">
 				</div>
-				<button onclick="refresh()"  class="btn btn-primary">Обновить</button>
-
+				<!--button onclick="refresh()"  class="btn btn-primary">Обновить</button>-->
+				<button onclick="refresh()" class="Button__button_1xT-P" type="submit" name="goForward">Обновить</button>
 			<p><b>Представители:</b></p>
 				<table id="my-table">
 				</table>
@@ -39,14 +36,8 @@
 			</td>
 		</tr>
 </table>
-
-
-
-
-
   <link rel="stylesheet" href="tinkmap.css">
   <link rel="stylesheet" href="tinkmap.css">
   <script src="tinkmap.js"></script>
-
  </body>
 </html>
