@@ -148,6 +148,12 @@ function DrawCoords(coordsObj) {
 		console.log(login);
         var loginText =  '  ' + 'User login: ' + login;
 		
+		
+	var car = date1user1["profile"];
+	var haveCar = car["car"];
+	console.log(haveCar);
+	var haveCarTxt =  '  ' + 'have a car: ' + haveCar;
+	
   // Get a reference to the table
   let tableRef = document.getElementById(tableID);
 
@@ -162,6 +168,9 @@ function DrawCoords(coordsObj) {
   //newCell.appendChild(newText);
   let new2Text = document.createTextNode(loginText);
   newCell.appendChild(new2Text);
+  
+  let new3Text = document.createTextNode(haveCarTxt);
+  newCell.appendChild(new3Text);
   
 		}
 
