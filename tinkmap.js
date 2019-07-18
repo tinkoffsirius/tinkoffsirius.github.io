@@ -9,26 +9,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18
 }).addTo(mymap);
 
-function loadJSON(url, callback) {
-	var xobj = new XMLHttpRequest();
-	xobj.overrideMimeType("application/json");
-	xobj.open('GET', url, true); // Replace 'my_data' with the path to your file
-	xobj.onreadystatechange = function () {
-		if (xobj.readyState == 4 && xobj.status == "200") {
-			// Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-			callback(xobj.responseText);
-		}
-	};
-	xobj.send(null);
-}
+var urla = "https://tinkoffsiriusmobile.firebaseio.com/agents.json";
 
+$.get(urla, function (agents) {
+	window.agents = agents
+})
 
-function deleteRow(tableID) {
-	let tableRef = document.getElementById(tableID);
-	//Table.innerHTML = "my-table";
-	tableRef.innerHTML = "";
-
-}
 function refresh() {
 
 	if (window.refreshTimeout) {
@@ -50,9 +36,7 @@ function refresh() {
 	}
 
 	clearMarkersAndPolylines()
-
-
-	deleteRow('my-table');
+	$('#userlist_list').html('')
 
 	var inputEl = document.getElementById("date_input");
 	var url = "https://tinkoffsiriusmobile.firebaseio.com/" + inputEl.value + ".json";
@@ -63,10 +47,10 @@ function refresh() {
 
 $('#btn_refresh').on('click', function () {
 
-	console.log(111);
+	// console.log(111);
 	refresh()
 	var today = moment().format("DD_MM_YYYY");
-	console.log('today', today);
+	// console.log('today', today);
 	var inputEl = document.getElementById("date_input");
 	if (today == inputEl.value) {
 		$("#contrl").show("fast");
@@ -87,7 +71,7 @@ $('#btn_refresh').on('click', function () {
 $("#objVal").on('submit', function (event) {
 	event.preventDefault();
 	var form_data = $(this).serializeArray();
-	console.log('form data', form_data);
+	// console.log('form data', form_data);
 	var soft_const = window.soft_const;
 
 	var soft_const_res = {};
@@ -97,7 +81,7 @@ $("#objVal").on('submit', function (event) {
 
 	for (var i in form_data) {
 		soft_const_res[form_data[i].name] = Number(form_data[i].value);
-		console.log('soft_const', soft_const_res);
+		// console.log('soft_const', soft_const_res);
 	}
 
 
@@ -106,14 +90,14 @@ $("#objVal").on('submit', function (event) {
 		method: 'PUT',
 		data: JSON.stringify(soft_const_res)
 	}, function (res) {
-		console.log('res', res)
+		// console.log('res', res)
 	});
 	$.ajax({
 		url: 'http://178.62.221.24:8000/',
 		method: 'POST',
 		data: JSON.stringify(soft_const_res)
 	}, function (res) {
-		console.log('res', res)
+		// console.log('res', res)
 	});
 
 });
@@ -122,7 +106,7 @@ $("#objVal").on('submit', function (event) {
 
 function drawUser(date1user1) {
 	var startCoords = date1user1["start_coordinates"];
-	console.log(startCoords);
+	// console.log(startCoords);
 	mymap.setView([startCoords['latitude'], startCoords['longitude']], 18)
 	var marker = L.marker([startCoords["latitude"], startCoords["longitude"]]).addTo(mymap);
 	markers.push(marker);
@@ -152,7 +136,7 @@ function drawUser(date1user1) {
 		iconAnchor: [19, 34],
 	});
 	if (endCoords != null) {
-		console.log(endCoords);
+		// console.log(endCoords);
 		var marker = L.marker([endCoords["latitude"], endCoords["longitude"]], { icon: myIcon }).addTo(mymap);
 		markers.push(marker)
 		hiCo.push([endCoords["latitude"], endCoords["longitude"]]);
@@ -179,41 +163,52 @@ function DrawCoords(coordsObj) {
 
 	for (var elem in userIds) {
 		userOrder = userIds[elem];
-		console.log(userOrder);
+		// console.log(userOrder);
 
 		var date1user1 = users[userOrder];
-		console.log(date1user1);
+		// console.log(date1user1);
 		drawUser(date1user1);
 
-		function addRow(tableID) {
+		renderUserInfoRow(date1user1);
 
-			var urla = "https://tinkoffsiriusmobile.firebaseio.com/agents.json";
-
-			var login = date1user1["login"];
-	 
-			var loginText = 'User login: ' + login;
-			$('#my-table').append(loginText)
-
-			if (date1user1["profile"] && date1user1["profile"]['car']) {
-				var haveCarTxt = 'Has car: ' + date1user1["profile"]['car'];
-				$('#my-table').append(haveCarTxt)
-			}
-
-			$.get(urla, function (coordsObj) {
-				for (var elem in coordsObj) {
-					agOrder = coordsObj[elem];
-					if (login == elem) {
-						var agentname = 'User name: ' + agOrder
-						$('#my-table').append(agentname)
-					}
-				}
-			})
-
-		}
-
-		addRow();
-
-		$('#userlist').show();
+		$('#userlist_heading').show();
 
 	}
+}
+
+
+function renderUserInfoRow(date1user1) {
+	// var card = '<div class="card">'
+	// card += '		<div class="card-body">'
+	// card += '			<h5 class="card-title name"></h5>'
+	// card += '			<h6 class="card-subtitle mb-2 text-muted login"></h6>'
+	// card += '			<p class="card-text text"></p>'
+	// card += '		</div>'
+	// card += '	</div>'
+	var card = '<li class="list-group-item" >'
+	card += '<div class="name"></div>'
+	card += '<div class="login"></div>'
+	card += '<div class="text"></div>'
+	card += '</li>'
+
+	var $card = $(card)
+
+	var login = date1user1["login"];
+
+	var loginText = 'login: ' + login;
+	$card.find('.login').html(loginText)
+	
+	var agentname = window.agents[login]
+	$card.find('.name').html(agentname)
+
+	if (date1user1["profile"] && date1user1["profile"]['car']) {
+		var haveCarTxt = 'Has car: ' + date1user1["profile"]['car'];
+		$card.find('.text').html(haveCarTxt)
+	} else {
+		$card.find('.text').hide()
+	}
+
+	$('#userlist_list').append($card)
+
+
 }
