@@ -33,16 +33,21 @@ function refresh() {
 
 	setTimeout(refresh, 60000);
 
-	for (var marker in markers) {
-		markers[marker].remove();
-	}
-	markers = [];
+	function clearMarkersAndPolylines() {
+		for (var marker in markers) {
+			markers[marker].remove();
+		}
+		markers = [];
 
 
-	for (var polyline in polylines) {
-		polylines[polyline].remove();
+		for (var polyline in polylines) {
+			polylines[polyline].remove();
+		}
+		polylines = [];
 	}
-	polylines = [];
+
+	clearMarkersAndPolylines()
+
 
 	deleteRow('my-table');
 
@@ -55,6 +60,12 @@ function refresh() {
 		DrawCoords(coordsObj);
 	});
 }
+
+$('#btn_refresh').on('click', function () {
+	console.log(111);
+	refresh()
+})
+
 
 function drawUser(date1user1) {
 	var startCoords = date1user1["start_coordinates"];
@@ -125,6 +136,13 @@ function DrawCoords(coordsObj) {
 
 
 			var urla = "https://tinkoffsiriusmobile.firebaseio.com/agents.json";
+
+			$.get(urla, function (resp) {
+
+				console.log('response222', resp);
+			})
+
+
 			loadJSON(urla, function (response) {
 				// Parse JSON string into object
 				var coordsObj = JSON.parse(response);
