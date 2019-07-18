@@ -73,7 +73,34 @@ $('#btn_refresh').on('click', function () {
 	}
 	else{$( "#contrl" ).hide("fast");
 	}
-})
+	var url2 = "https://tinkoffsiriusmobile.firebaseio.com/soft_const.json";
+	$.get(url2, function(soft_const){
+	Object.keys(soft_const).forEach(function(key) {
+	var value = soft_const[key] === 1 ? true : false;
+	$('#contrl input[name="' + key + '"]').prop( "checked", value );
+	});	
+	});
+});
+
+$("#objVal").on('submit', function(event){
+	event.preventDefault();	
+	var form_data = $(this).serializeArray();
+	console.log('form data', form_data);
+	
+	
+	
+	/*var obj = {
+	lateness: 0,
+	distance: 0,
+	meetings: 0
+	}*/
+	for(var i in form_data){
+	soft_const[form_data[i].name] = Number(form_data[i].value);
+	console.log('soft_const', soft_const);
+	}
+	
+});
+
 
 
 function drawUser(date1user1) {

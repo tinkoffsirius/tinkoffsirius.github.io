@@ -43,28 +43,25 @@
 					<button id="btn_refresh" class="btn btn-primary">Обновить</button>
 				</div>
 			</div>
-			
+			<form id="objVal">
 			<div id="contrl" style="display: none">
 				<div class="form-check">
-					<input class="form-check-input " type="checkbox" value="1" id="defaultCheck1">
+					<input class="form-check-input " name="lateness" type="checkbox" value="1">
 					<label class="form-check-label" for="defaultCheck1">Опоздание</label>
 					</div>
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="1" id="defaultCheck2">
+					<input class="form-check-input" name="distance" type="checkbox" value="1">
 					<label class="form-check-label" for="defaultCheck2">Расстояние</label>
 					</div>
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="1" id="defaultCheck3">
+					<input class="form-check-input" name="meetings" type="checkbox" value="1">
 					<label class="form-check-label" for="defaultCheck3">Количество встреч</label>
 					</div>
+					<button id="saveBtn" type="submit" class="btn btn-primary btn-sm">Сохранить</button>
 			</div>	
 			
-				<script>
-				$( "#btn_refresh" ).click(function() {
-				$( "#contrl" ).show( "fast");
-				});
-				</script>
-				
+			</form>	
+			
 			<div class="px-2">
 				<table id="my-table">
 				</table>
