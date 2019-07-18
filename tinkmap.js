@@ -31,7 +31,10 @@ function deleteRow(tableID) {
 }
 function refresh() {
 
-	setTimeout(refresh, 60000);
+	if (window.refreshTimeout) {
+		clearTimeout(window.refreshTimeout);
+	}
+	window.refreshTimeout = setTimeout(refresh, 60000);
 
 	function clearMarkersAndPolylines() {
 		for (var marker in markers) {
@@ -53,17 +56,16 @@ function refresh() {
 
 	var inputEl = document.getElementById("date_input");
 	var url = "https://tinkoffsiriusmobile.firebaseio.com/" + inputEl.value + ".json";
-	loadJSON(url, function (response) {
-		// Parse JSON string into object
-		var coordsObj = JSON.parse(response);
-		console.log(coordsObj);
-		DrawCoords(coordsObj);
-	});
+
+	$.get(url, DrawCoords)
+
 }
 
 $('#btn_refresh').on('click', function () {
 	console.log(111);
 	refresh()
+	var today = moment().format("DD_MM_YYYY");
+	console.log('today', today)
 })
 
 
@@ -137,18 +139,7 @@ function DrawCoords(coordsObj) {
 
 			var urla = "https://tinkoffsiriusmobile.firebaseio.com/agents.json";
 
-			$.get(urla, function (resp) {
-
-				console.log('response222', resp);
-			})
-
-
-			loadJSON(urla, function (response) {
-				// Parse JSON string into object
-				var coordsObj = JSON.parse(response);
-				var agOrder;
-
-
+			$.get(urla, function (coordsObj) {
 				for (var elem in coordsObj) {
 					agOrder = coordsObj[elem];
 
@@ -159,18 +150,11 @@ function DrawCoords(coordsObj) {
 						newCell.appendChild(newText);
 					}
 				}
-
-			});
+			})
 
 			var login = date1user1["login"];
 			console.log(login);
 			var loginText = '  ' + 'User login: ' + login;
-
-
-			// var car = date1user1["profile"];
-			// var haveCar = car["car"];
-			// console.log(haveCar);
-			// var haveCarTxt =  '  ' + 'have a car: ' + haveCar;
 
 			// Get a reference to the table
 			let tableRef = document.getElementById(tableID);
