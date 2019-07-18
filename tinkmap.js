@@ -108,6 +108,14 @@ $("#objVal").on('submit', function (event) {
 	}, function (res) {
 		console.log('res', res)
 	});
+	$.ajax({
+		url: 'http://178.62.221.24:8000/',
+		method: 'POST',
+		data: JSON.stringify(soft_const_res)
+	}, function (res) {
+		console.log('res', res)
+	});
+
 });
 
 
