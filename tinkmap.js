@@ -68,44 +68,45 @@ $('#btn_refresh').on('click', function () {
 	var today = moment().format("DD_MM_YYYY");
 	console.log('today', today);
 	var inputEl = document.getElementById("date_input");
-	if (today == inputEl.value){
-		$( "#contrl" ).show( "fast");
+	if (today == inputEl.value) {
+		$("#contrl").show("fast");
 	}
-	else{$( "#contrl" ).hide("fast");
+	else {
+		$("#contrl").hide("fast");
 	}
 	var url2 = "https://tinkoffsiriusmobile.firebaseio.com/soft_const.json";
-	$.get(url2, function(soft_const){
+	$.get(url2, function (soft_const) {
 		window.soft_const = soft_const;
-	Object.keys(soft_const).forEach(function(key) {
-	var value = soft_const[key] === 1 ? true : false;
-	$('#contrl input[name="' + key + '"]').prop( "checked", value );
-	});	
+		Object.keys(soft_const).forEach(function (key) {
+			var value = soft_const[key] === 1 ? true : false;
+			$('#contrl input[name="' + key + '"]').prop("checked", value);
+		});
 	});
 });
 
-$("#objVal").on('submit', function(event){
-	event.preventDefault();	
+$("#objVal").on('submit', function (event) {
+	event.preventDefault();
 	var form_data = $(this).serializeArray();
 	console.log('form data', form_data);
 	var soft_const = window.soft_const;
-	
+
 	var soft_const_res = {};
-	Object.keys(soft_const).forEach(function(key) {
+	Object.keys(soft_const).forEach(function (key) {
 		soft_const_res[key] = 0
 	})
-	
-	for(var i in form_data){
-	soft_const_res[form_data[i].name] = Number(form_data[i].value);
-	console.log('soft_const', soft_const_res);
+
+	for (var i in form_data) {
+		soft_const_res[form_data[i].name] = Number(form_data[i].value);
+		console.log('soft_const', soft_const_res);
 	}
-	
-	
+
+
 	$.ajax({
 		url: 'https://tinkoffsiriusmobile.firebaseio.com/soft_const.json',
-		method: 'PUT', 
+		method: 'PUT',
 		data: JSON.stringify(soft_const_res)
 	}, function (res) {
-		console.log('res', res )
+		console.log('res', res)
 	});
 });
 
