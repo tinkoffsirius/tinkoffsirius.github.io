@@ -187,56 +187,31 @@ function DrawCoords(coordsObj) {
 
 		function addRow(tableID) {
 
-
 			var urla = "https://tinkoffsiriusmobile.firebaseio.com/agents.json";
+
+			var login = date1user1["login"];
+	 
+			var loginText = 'User login: ' + login;
+			$('#my-table').append(loginText)
+
+			if (date1user1["profile"] && date1user1["profile"]['car']) {
+				var haveCarTxt = 'Has car: ' + date1user1["profile"]['car'];
+				$('#my-table').append(haveCarTxt)
+			}
 
 			$.get(urla, function (coordsObj) {
 				for (var elem in coordsObj) {
 					agOrder = coordsObj[elem];
-
 					if (login == elem) {
-						console.log(agOrder)
-						var agentname = "  " + "User name: " + agOrder
-						let newText = document.createTextNode(agentname);
-						newCell.appendChild(newText);
+						var agentname = 'User name: ' + agOrder
+						$('#my-table').append(agentname)
 					}
 				}
 			})
 
-			var login = date1user1["login"];
-			console.log(login);
-			var loginText = '  ' + 'User login: ' + login;
-
-			// Get a reference to the table
-			let tableRef = document.getElementById(tableID);
-
-			// Insert a row at the end of the table
-			let newRow = tableRef.insertRow(-1);
-
-			// Insert a cell in the row at index 0
-			let newCell = newRow.insertCell(0);
-
-			// Append a text node to the cell
-			//let newText = document.createTextNode(userOrder);
-			//newCell.appendChild(newText);
-			let new2Text = document.createTextNode(loginText);
-			newCell.appendChild(new2Text);
-
-
-			if (date1user1["profile"]) {
-				var car = date1user1["profile"];
-				var haveCar = car["car"];
-				console.log(haveCar);
-				var haveCarTxt = '  ' + 'have a car: ' + haveCar;
-				let new3Text = document.createTextNode(haveCarTxt);
-				newCell.appendChild(new3Text);
-			}
-
 		}
 
-
-		// Call addRow() with the table's ID
-		addRow('my-table');
+		addRow();
 
 		$('#userlist').show();
 
