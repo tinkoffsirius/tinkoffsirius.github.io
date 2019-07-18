@@ -62,10 +62,17 @@ function refresh() {
 }
 
 $('#btn_refresh').on('click', function () {
+
 	console.log(111);
 	refresh()
 	var today = moment().format("DD_MM_YYYY");
-	console.log('today', today)
+	console.log('today', today);
+	var inputEl = document.getElementById("date_input");
+	if (today == inputEl.value){
+		$( "#contrl" ).show( "fast");
+	}
+	else{$( "#contrl" ).hide("fast");
+	}
 })
 
 
