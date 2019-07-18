@@ -238,5 +238,7 @@ function DrawCoords(coordsObj) {
 		// Call addRow() with the table's ID
 		addRow('my-table');
 
+		$('#userlist').show();
+
 	}
 }

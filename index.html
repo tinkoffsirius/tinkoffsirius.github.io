@@ -34,8 +34,27 @@
 		<div class="col-sm-12 col-md-4">
 			<p class="px-2"><img width="360px" height="100px" src="logo.png"></p>
 
+
+			<div class="row px-2">
+				<div class="col-md-12">
+					Регион
+			 
+
+					<div class="form-group">
+
+						<select class="form-control" id="region">
+							<option>Сочи</option>
+						</select>
+					</div>
+
+				</div>
+
+			</div>
+
+
 			<div class="row px-2">
 				<div class="col-md-8">
+
 					<input type="text" class="form-control" id="date_input" autocomplete="off"
 						placeholder="Выберите дату">
 				</div>
@@ -44,25 +63,30 @@
 				</div>
 			</div>
 			<form id="objVal">
-			<div id="contrl" style="display: none">
-				<div class="form-check">
-					<input class="form-check-input " name="lateness" type="checkbox" value="1">
-					<label class="form-check-label" for="defaultCheck1">Опоздание</label>
+				<div id="contrl" class="px-2" style="display: none">
+					<br>
+					<div class="form-check">
+						<input class="form-check-input" id="lateness" name="lateness" type="checkbox" value="1">
+						<label class="form-check-label" for="lateness">Опоздание</label>
 					</div>
-				<div class="form-check">
-					<input class="form-check-input" name="distance" type="checkbox" value="1">
-					<label class="form-check-label" for="defaultCheck2">Расстояние</label>
+					<div class="form-check">
+						<input class="form-check-input" id="distance" name="distance" type="checkbox" value="1">
+						<label class="form-check-label" for="distance">Расстояние</label>
 					</div>
-				<div class="form-check">
-					<input class="form-check-input" name="meetings" type="checkbox" value="1">
-					<label class="form-check-label" for="defaultCheck3">Количество встреч</label>
+					<div class="form-check">
+						<input class="form-check-input" id="meetings" name="meetings" type="checkbox" value="1">
+						<label class="form-check-label" for="meetings">Количество встреч</label>
 					</div>
+					<br>
 					<button id="saveBtn" type="submit" class="btn btn-primary btn-sm">Запустить</button>
-			</div>	
-			
-			</form>	
-			
+					<br>
+				</div>
+
+			</form>
+
 			<div class="px-2">
+					<br>
+				<h5 id="userlist" style="display:none">Представители:</h5>
 				<table id="my-table">
 				</table>
 			</div>
@@ -72,9 +96,6 @@
 			<div id="mapid"></div>
 		</div>
 	</div>
-	
-	<label class="UIBeautifulNumberListItem__label_2vsBr" data-qa-file="UIBeautifulNumberListItem"><div data-qa-type="uikit/radio" tabindex="0" 
-	class="Radio__container_1TYdy Radio__container_size_l_fcjqS Radio__container_theme_default_3B4Yf Radio__container_checked_ZnxoI"><span class="Radio__inputOuter_3BOet" tabindex="-1"><input name="beatifulNumberList" type="radio" hidden="" checked=""></span></div><div class="UIBeautifulNumberListItem__content_A8Glb" data-qa-file="UIBeautifulNumberListItem"><div class="UIBeautifulNumberListItem__numberTitle_tCxhY" data-qa-file="UIBeautifulNumberListItem"><span class="UIBeautifulNumberListItem__titleWrapper_33WOy" data-qa-file="UIBeautifulNumberListItem"><span class="UIBeautifulNumberListItem__title_3EVqg" data-qa-file="UIBeautifulNumberListItem"><span class="Text__text_3OSYn Text__text_size_17_2eIAZ Text__text_sizeTabletS_17_26N8- Text__text_sizeTabletL_17_2Z65g Text__text_sizeDesktopS_17_gAZ4Y Text__text_sizeDesktopM_17_1YgOg Text__text_sizeDesktopL_17_fPdEA">+7 (995) 229 37 30</span></span><span class="UIBeautifulNumberListItem__subtitle_12ctn" data-qa-file="UIBeautifulNumberListItem"><span class="Text__text_3OSYn Text__text_size_13_jiqJ9 Text__text_sizeTabletS_15_1fV7h Text__text_sizeTabletL_15_3d6mE Text__text_sizeDesktopS_15_34xeh Text__text_sizeDesktopM_15_wCGn7 Text__text_sizeDesktopL_15_2xIaQ">Бесплатно</span></span></span><div class="UIBeautifulNumberListItem__icon_2Qfyq" data-qa-file="UIBeautifulNumberListItem"><div data-qa-file="FormFieldBeautifulNumberList"><div class="Icon__icon_3ho54 Icon__icon_size_48_3JniU" data-svg-id="339b3622670163d4a2377525e5377569.svg" role="presentation" data-qa-file="Icon" style="width: 48px; height: 48px; color: rgb(84, 133, 184); transform: none; vertical-align: top;"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 202 202"><path class="icon__stroke icon__stroke_non-scaling" stroke="#333" stroke-width="3" d="M101 141.92l-5.32-5.31C75.92 119.13 63 107.34 63 92.89 63 81.13 72.13 72 83.89 72c6.48 0 12.93 3.04 17.11 7.98 4.18-4.94 10.63-7.98 17.11-7.98C129.87 72 139 81.13 139 92.89c0 14.45-12.92 26.24-32.68 43.72l-5.32 5.31zm0 0"></path></svg></div></div></div></div></div></label>
 
 
 

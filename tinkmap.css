@@ -8,3 +8,14 @@ body {
 .full_height {
   height: 100%;
 }
+
+#btn_refresh, #saveBtn {
+  background: #ffdd2d !important;
+  color: #333;
+  border: 1px solid #ffdd2d !important;
+}
+#btn_refresh:hover, #saveBtn:hover {
+  background: #fcc521 !important;
+  color: #333;
+  border: 1px solid #fcc521 !important;
+}
