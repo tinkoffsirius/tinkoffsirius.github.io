@@ -75,6 +75,7 @@ $('#btn_refresh').on('click', function () {
 	}
 	var url2 = "https://tinkoffsiriusmobile.firebaseio.com/soft_const.json";
 	$.get(url2, function(soft_const){
+		window.soft_const = soft_const;
 	Object.keys(soft_const).forEach(function(key) {
 	var value = soft_const[key] === 1 ? true : false;
 	$('#contrl input[name="' + key + '"]').prop( "checked", value );
@@ -86,19 +87,26 @@ $("#objVal").on('submit', function(event){
 	event.preventDefault();	
 	var form_data = $(this).serializeArray();
 	console.log('form data', form_data);
+	var soft_const = window.soft_const;
 	
+	var soft_const_res = {};
+	Object.keys(soft_const).forEach(function(key) {
+		soft_const_res[key] = 0
+	})
 	
-	
-	/*var obj = {
-	lateness: 0,
-	distance: 0,
-	meetings: 0
-	}*/
 	for(var i in form_data){
-	soft_const[form_data[i].name] = Number(form_data[i].value);
-	console.log('soft_const', soft_const);
+	soft_const_res[form_data[i].name] = Number(form_data[i].value);
+	console.log('soft_const', soft_const_res);
 	}
 	
+	
+	$.ajax({
+		url: 'https://tinkoffsiriusmobile.firebaseio.com/soft_const.json',
+		method: 'PUT', 
+		data: JSON.stringify(soft_const_res)
+	}, function (res) {
+		console.log('res', res )
+	});
 });
 
 
