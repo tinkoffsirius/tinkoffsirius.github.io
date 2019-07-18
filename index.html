@@ -16,9 +16,9 @@
 	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
 		integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
 		crossorigin=""></script>
-		<link rel="icon" href="https://www.tinkoff.ru/favicon-16x16.png" sizes="16x16" type="image/png">
-		<link rel="icon" href="https://www.tinkoff.ru/favicon-32x32.png" sizes="32x32" type="image/png">
-		<link rel="icon" href="https://www.tinkoff.ru/favicon-96x96.png" sizes="96x96" type="image/png">
+	<link rel="icon" href="https://www.tinkoff.ru/favicon-16x16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="https://www.tinkoff.ru/favicon-32x32.png" sizes="32x32" type="image/png">
+	<link rel="icon" href="https://www.tinkoff.ru/favicon-96x96.png" sizes="96x96" type="image/png">
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -30,24 +30,30 @@
 
 	<!--<p><img width="360px" height="100px" src="logo.png"></p>-->
 
-	<div class="row">
-		<div class="col-sm-4">
-			<p><img width="360px" height="100px" src="logo.png"></p>
-			<p class="px-2">
-				<label for="inp_1">Введите дату:</label>
-				<input type="text" class="form-control" id="date_input" autocomplete="off">
-				<br>
-				<button onclick="refresh()" class="btn btn-primary">Обновить</button>
+	<div class="row full_height">
+		<div class="col-sm-12 col-md-4">
+			<p class="px-2"><img width="360px" height="100px" src="logo.png"></p>
 
+			<div class="row px-2">
+				<div class="col-md-8">
+					<input type="text" class="form-control" id="date_input" autocomplete="off"
+						placeholder="Выберите дату">
+				</div>
+				<div class="col-md-4">
+					<button onclick="refresh()" class="btn btn-primary">Обновить</button>
+				</div>
+			</div>
+
+			<div class="px-2">
 				<table id="my-table">
 				</table>
-			</p>
+			</div>
+
 		</div>
-		<div class="col-sm-8">
+		<div class="col-sm-12 col-md-8 full_height">
 			<div id="mapid"></div>
 		</div>
 	</div>
-
 
 
 
@@ -64,8 +70,8 @@
 			daysMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
 			months: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
 			days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    		daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    		monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+			daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+			monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 			today: "Сегодня",
 			clear: "Очистить",
 			format: "dd_mm_yyyy",

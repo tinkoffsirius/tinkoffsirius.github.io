@@ -1,1 +1,10 @@
-#mapid { height: 740px; } 
+html,
+body {
+  height: 100%;
+}
+#mapid {
+  height: 100%;
+}
+.full_height {
+  height: 100%;
+}
