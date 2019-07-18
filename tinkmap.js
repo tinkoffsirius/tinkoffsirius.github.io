@@ -122,63 +122,63 @@ function DrawCoords(coordsObj) {
 		drawUser(date1user1);
 
 		function addRow(tableID) {
-		
-		
-		var urla = "https://tinkoffsiriusmobile.firebaseio.com/agents.json";
-    loadJSON(urla, function(response) {
-        // Parse JSON string into object
-        var coordsObj = JSON.parse(response);
-        var agOrder;
-		
-		
-		for(var elem in coordsObj){
-		agOrder = coordsObj[elem];
-		
-			if (login == elem) {
-			console.log(agOrder)
-		var agentname = "  " + "User name: " + agOrder
-		let newText = document.createTextNode(agentname);
-		newCell.appendChild(newText);
-  			}
-		}
-		
-		}); 
-	
-	var login = date1user1["login"];
-		console.log(login);
-        var loginText =  '  ' + 'User login: ' + login;
-		
-		
-	// var car = date1user1["profile"];
-	// var haveCar = car["car"];
-	// console.log(haveCar);
-	// var haveCarTxt =  '  ' + 'have a car: ' + haveCar;
-	
-  // Get a reference to the table
-  let tableRef = document.getElementById(tableID);
 
-  // Insert a row at the end of the table
-  let newRow = tableRef.insertRow(-1);
 
-  // Insert a cell in the row at index 0
-  let newCell = newRow.insertCell(0);
+			var urla = "https://tinkoffsiriusmobile.firebaseio.com/agents.json";
+			loadJSON(urla, function (response) {
+				// Parse JSON string into object
+				var coordsObj = JSON.parse(response);
+				var agOrder;
 
-  // Append a text node to the cell
-  //let newText = document.createTextNode(userOrder);
-  //newCell.appendChild(newText);
-  let new2Text = document.createTextNode(loginText);
-  newCell.appendChild(new2Text);
-  
-  
-  if (date1user1["profile"]) {
-	 var car = date1user1["profile"];
-	  var haveCar = car["car"];
-	  console.log(haveCar);
-	  var haveCarTxt =  '  ' + 'have a car: ' + haveCar;
-	  let new3Text = document.createTextNode(haveCarTxt);
-	  newCell.appendChild(new3Text);
-  }
-  
+
+				for (var elem in coordsObj) {
+					agOrder = coordsObj[elem];
+
+					if (login == elem) {
+						console.log(agOrder)
+						var agentname = "  " + "User name: " + agOrder
+						let newText = document.createTextNode(agentname);
+						newCell.appendChild(newText);
+					}
+				}
+
+			});
+
+			var login = date1user1["login"];
+			console.log(login);
+			var loginText = '  ' + 'User login: ' + login;
+
+
+			// var car = date1user1["profile"];
+			// var haveCar = car["car"];
+			// console.log(haveCar);
+			// var haveCarTxt =  '  ' + 'have a car: ' + haveCar;
+
+			// Get a reference to the table
+			let tableRef = document.getElementById(tableID);
+
+			// Insert a row at the end of the table
+			let newRow = tableRef.insertRow(-1);
+
+			// Insert a cell in the row at index 0
+			let newCell = newRow.insertCell(0);
+
+			// Append a text node to the cell
+			//let newText = document.createTextNode(userOrder);
+			//newCell.appendChild(newText);
+			let new2Text = document.createTextNode(loginText);
+			newCell.appendChild(new2Text);
+
+
+			if (date1user1["profile"]) {
+				var car = date1user1["profile"];
+				var haveCar = car["car"];
+				console.log(haveCar);
+				var haveCarTxt = '  ' + 'have a car: ' + haveCar;
+				let new3Text = document.createTextNode(haveCarTxt);
+				newCell.appendChild(new3Text);
+			}
+
 		}
 
 
