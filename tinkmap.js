@@ -100,6 +100,14 @@ $("#objVal").on('submit', function (event) {
 		// console.log('res', res)
 	});
 
+	$('#spinner').show()
+	$('#contrl').addClass('loading')
+	setTimeout(function () {
+		$('#contrl').removeClass('loading')
+		$('#spinner').hide()
+	}, 750)
+	
+
 });
 
 

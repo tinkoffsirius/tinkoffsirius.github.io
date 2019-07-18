@@ -19,11 +19,13 @@ body {
   color: #333;
   border: 1px solid #fcc521 !important;
 }
-/* #userlist_list {
-  padding: 0;
-  margin: 0;
-  list-style: 0;
+#objVal {
+  position: relative;
 }
-#userlist_list li{
-  margin-bottom: 10px;
-} */
+#spinner {
+  position: absolute;
+  margin: 55px 0 0 200px;
+}
+.loading {
+  opacity: .3;
+}
