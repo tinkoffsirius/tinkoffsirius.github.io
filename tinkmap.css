@@ -43,3 +43,13 @@ body {
   background: #ffdd2d !important;
   color: #333;
 }
+.marker {
+  margin-bottom: 10px
+}
+.marker2 {
+  margin-bottom: 10px;
+  margin-left: 5px
+}
+.marker3 {
+  margin-left: 5px
+}

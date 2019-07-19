@@ -44,11 +44,13 @@ function refresh() {
 	$.get(url, function (coordsObj) {
 		$('#userlist_heading').hide();
 		$('#userlist_emptyalert').hide();
+		$('#legend').hide();
 		if (coordsObj && coordsObj["users"]) {
 			DrawCoords(coordsObj)
 		} else {
 			$('#userlist_heading').show();
 			$('#userlist_emptyalert').show();
+			$('#legend').show();
 		}
 	})
 
@@ -199,6 +201,8 @@ function DrawCoords(coordsObj) {
 	}
 
 	$('#userlist_heading').show();
+	$('#legend').show();
+	
 }
 
 
