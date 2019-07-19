@@ -41,7 +41,16 @@ function refresh() {
 	var inputEl = document.getElementById("date_input");
 	var url = "https://tinkoffsiriusmobile.firebaseio.com/" + inputEl.value + ".json";
 
-	$.get(url, DrawCoords)
+	$.get(url, function (coordsObj) {
+		$('#userlist_heading').hide();
+		$('#userlist_emptyalert').hide();
+		if (coordsObj && coordsObj["users"]) {
+			DrawCoords(coordsObj)
+		} else {
+			$('#userlist_heading').show();
+			$('#userlist_emptyalert').show();
+		}
+	})
 
 }
 
@@ -100,13 +109,21 @@ $("#objVal").on('submit', function (event) {
 		// console.log('res', res)
 	});
 
-	$('#spinner').show()
 	$('#contrl').addClass('loading')
+
+	$('#inprogress-container').show()
+	$('#inprogress-spinner').show()
+
 	setTimeout(function () {
-		$('#contrl').removeClass('loading')
-		$('#spinner').hide()
+		$('#inprogress-spinner').hide()
+		$('#inprogress-ok').show()
+		setTimeout(function () {
+			$('#inprogress-ok').hide()
+			$('#inprogress-container').hide()
+			$('#contrl').removeClass('loading')
+		}, 1000)
 	}, 750)
-	
+
 
 });
 
@@ -114,6 +131,9 @@ $("#objVal").on('submit', function (event) {
 
 function drawUser(date1user1) {
 	var startCoords = date1user1["start_coordinates"];
+	if (!startCoords) {
+		return false
+	}
 	// console.log(startCoords);
 	mymap.setView([startCoords['latitude'], startCoords['longitude']], 18)
 	var marker = L.marker([startCoords["latitude"], startCoords["longitude"]]).addTo(mymap);
@@ -171,32 +191,23 @@ function DrawCoords(coordsObj) {
 
 	for (var elem in userIds) {
 		userOrder = userIds[elem];
-		// console.log(userOrder);
-
 		var date1user1 = users[userOrder];
-		// console.log(date1user1);
-		drawUser(date1user1);
-
-		renderUserInfoRow(date1user1);
-
-		$('#userlist_heading').show();
-
+		if (date1user1['start_coordinates']) {
+			drawUser(date1user1);
+			renderUserInfoRow(date1user1);
+		}
 	}
+
+	$('#userlist_heading').show();
 }
 
 
 function renderUserInfoRow(date1user1) {
-	// var card = '<div class="card">'
-	// card += '		<div class="card-body">'
-	// card += '			<h5 class="card-title name"></h5>'
-	// card += '			<h6 class="card-subtitle mb-2 text-muted login"></h6>'
-	// card += '			<p class="card-text text"></p>'
-	// card += '		</div>'
-	// card += '	</div>'
+
 	var card = '<li class="list-group-item" >'
 	card += '<div class="name"></div>'
-	card += '<div class="login"></div>'
-	card += '<div class="text"></div>'
+	card += '<div class="login text-muted"></div>'
+	card += '<div class="car"><i class="fas fa-car" data-toggle="tooltip" data-placement="right" title="На автомобиле"></i></div>'
 	card += '</li>'
 
 	var $card = $(card)
@@ -205,18 +216,17 @@ function renderUserInfoRow(date1user1) {
 
 	var loginText = 'login: ' + login;
 	$card.find('.login').html(loginText)
-	
+
 	var agentname = window.agents[login]
 	$card.find('.name').html(agentname)
 
-	if (date1user1["profile"] && date1user1["profile"]['car']) {
-		var haveCarTxt = 'Has car: ' + date1user1["profile"]['car'];
-		$card.find('.text').html(haveCarTxt)
+	if (date1user1["profile"] && date1user1["profile"]['car'] && date1user1["profile"]['car'] == 'true') {
+		$card.find('.car').show()
 	} else {
-		$card.find('.text').hide()
+		$card.find('.car').hide()
 	}
 
 	$('#userlist_list').append($card)
-
+	$('[data-toggle="tooltip"]').tooltip()
 
 }

@@ -22,10 +22,24 @@ body {
 #objVal {
   position: relative;
 }
-#spinner {
+#inprogress-container {
   position: absolute;
   margin: 55px 0 0 200px;
 }
+#inprogress-spinner i {
+  color: #fcc521 !important;
+}
+#inprogress-ok i {
+  color: #22a053 !important;
+}
 .loading {
   opacity: .3;
+  pointer-events:none
+}
+.tooltip .arrow::before {
+  border-right-color: #ffdd2d !important;
+}
+.tooltip-inner {
+  background: #ffdd2d !important;
+  color: #333;
 }

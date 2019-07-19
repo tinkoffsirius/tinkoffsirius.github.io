@@ -6,8 +6,8 @@
 	<meta charset="utf-8">
 	<title>Диспетчер</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="bootstrap.min.css">
 
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
 		integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -20,9 +20,6 @@
 	<link rel="icon" href="https://www.tinkoff.ru/favicon-32x32.png" sizes="32x32" type="image/png">
 	<link rel="icon" href="https://www.tinkoff.ru/favicon-96x96.png" sizes="96x96" type="image/png">
 
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
-		integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -38,7 +35,7 @@
 			<div class="row px-2">
 				<div class="col-md-12">
 					Регион
-			 
+
 
 					<div class="form-group">
 
@@ -63,7 +60,11 @@
 				</div>
 			</div>
 			<form id="objVal">
-				<div id="spinner"style="display: none"><i class="fas fa-spinner fa-spin fa-2x"></i></div>
+				<div id="inprogress-container" style="display: none">
+					<div id="inprogress-spinner" style="display: none"><i class="fas fa-spinner fa-spin fa-2x"></i>
+					</div>
+					<div id="inprogress-ok" style="display: none"><i class="far fa-check-circle fa-2x"></i></i></div>
+				</div>
 				<div id="contrl" class="px-2" style="display: none">
 					<br>
 					<div class="form-check">
@@ -86,9 +87,12 @@
 			</form>
 
 			<div class="px-2">
-					<br>
+				<br>
 				<h5 id="userlist_heading" style="display:none">Представители:</h5>
 				<ul id="userlist_list" class="list-group"></ul>
+				<div id="userlist_emptyalert" class="alert alert-info" style="display:none">
+					Нет представителей для отображения
+				</div>
 			</div>
 
 		</div>
@@ -103,11 +107,14 @@
 	<link rel="stylesheet" href="tinkmap.css">
 	<link rel="stylesheet" href="tinkmap.css">
 	<script src="tinkmap.js"></script>
-	
+
 	<link rel="stylesheet" href="bootstrap-datepicker.standalone.min.css">
-	<script src="bootstrap-datepicker.min.js"></script>
-	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
+	<script src="bootstrap-datepicker.min.js"></script>
+	<script src="popper.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<script src="moment.min.js"></script>
 
 	<script>
 		$.fn.datepicker.dates['ru'] = {
