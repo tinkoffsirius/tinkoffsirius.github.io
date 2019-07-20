@@ -137,7 +137,7 @@ function drawUser(date1user1) {
 		return false
 	}
 	// console.log(startCoords);
-	mymap.setView([startCoords['latitude'], startCoords['longitude']], 13)
+	mymap.setView([startCoords['latitude'], startCoords['longitude']], 15)
 	var marker = L.marker([startCoords["latitude"], startCoords["longitude"]]).addTo(mymap);
 	markers.push(marker);
 
