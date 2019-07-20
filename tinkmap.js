@@ -3,6 +3,8 @@ var mymap = L.map('mapid').setView([0, 0], 5);
 var markers = [];
 var polylines = [];
 
+var colors = ["#d81b60","#1e88e5","#5e35b1","#fdd835","#546e7a","#00acc1","#7cb342","#f4511e","#6d4c41","#3949ab","#fb8c00","#039be5","#00897b","#43a047","#c0ca33","#ffb300","#757575","#8e24aa"]
+
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: 'OpenStreetMapData',
@@ -14,6 +16,8 @@ var urla = "https://tinkoffsiriusmobile.firebaseio.com/agents.json";
 $.get(urla, function (agents) {
 	window.agents = agents
 })
+
+// $('#main_container').css('height', window.innerHeight + 'px')
 
 function refresh() {
 
@@ -131,7 +135,7 @@ $("#objVal").on('submit', function (event) {
 
 
 
-function drawUser(date1user1) {
+function drawUser(date1user1, index) {
 	var startCoords = date1user1["start_coordinates"];
 	if (!startCoords) {
 		return false
@@ -176,8 +180,10 @@ function drawUser(date1user1) {
 		marker.bindPopup(popupText).openPopup();
 
 	}
-
-	var colorLine = '#' + ('00000' + (Math.random() * (1 << 24) | 0).toString(16)).slice(-6)
+	//colors
+	// console.log(colors[index]);
+	// var colorLine = '#' + ('00000' + (Math.random() * (1 << 24) | 0).toString(16)).slice(-6)
+	var colorLine = colors[index]
 	var polyline = L.polyline(hiCo, {
 		color: colorLine
 	}).addTo(mymap);
@@ -194,9 +200,9 @@ function DrawCoords(coordsObj) {
 	for (var elem in userIds) {
 		userOrder = userIds[elem];
 		var date1user1 = users[userOrder];
-		if (date1user1['start_coordinates']) {
-			drawUser(date1user1);
-			renderUserInfoRow(date1user1);
+		if (date1user1['start_coordinates'] && Number.isInteger(Number(date1user1['login'])) && window.agents[date1user1['login']]) {
+			drawUser(date1user1, elem);
+			renderUserInfoRow(date1user1, elem);
 		}
 	}
 
@@ -206,11 +212,11 @@ function DrawCoords(coordsObj) {
 }
 
 
-function renderUserInfoRow(date1user1) {
+function renderUserInfoRow(date1user1, index) {
 
 	var card = '<li class="list-group-item" >'
 	card += '<div class="name"></div>'
-	card += '<div class="login text-muted"></div>'
+	card += '<div><span class="color_marker"></span><span class="login text-muted"></span></div>'
 	card += '<div class="car"><i class="fas fa-car" data-toggle="tooltip" data-placement="right" title="На автомобиле"></i></div>'
 	card += '</li>'
 
@@ -223,6 +229,7 @@ function renderUserInfoRow(date1user1) {
 
 	var agentname = window.agents[login]
 	$card.find('.name').html(agentname)
+	$card.find('.color_marker').css('background-color', colors[index])
 
 	if (date1user1["profile"] && date1user1["profile"]['car'] && date1user1["profile"]['car'] == 'true') {
 		$card.find('.car').show()

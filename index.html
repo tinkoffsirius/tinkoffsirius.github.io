@@ -25,16 +25,14 @@
 
 <body>
 
-	<!--<p><img width="360px" height="100px" src="logo.png"></p>-->
-
-	<div class="row full_height">
-		<div class="col-sm-12 col-md-4">
-			<p class="px-2"><img width="360px" height="100px" src="logo.png"></p>
+	<div class="row full_height" id="main_container">
+		<div class="col-sm-12 col-md-3">
+			<p class="px-2"><img id="logo" width="300" src="logo.png"></p>
 
 
 			<div class="row px-2">
 				<div class="col-md-12">
-					<h5>Регион:</h5>
+					Регион
 
 
 					<div class="form-group">
@@ -66,22 +64,28 @@
 					<div id="inprogress-ok" style="display: none"><i class="far fa-check-circle fa-2x"></i></i></div>
 				</div>
 				<div id="contrl" class="px-2" style="display: none">
-					<br>
-					<div class="form-check">
-						<input class="form-check-input" id="lateness" name="lateness" type="checkbox" value="1">
-						<label class="form-check-label" for="lateness">Опоздание</label>
+
+					<div class="row">
+						<div class="col-md-8">
+							<br>
+							<div class="form-check">
+								<input class="form-check-input" id="lateness" name="lateness" type="checkbox" value="1">
+								<label class="form-check-label" for="lateness">Опоздание</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" id="distance" name="distance" type="checkbox" value="1">
+								<label class="form-check-label" for="distance">Расстояние</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" id="meetings" name="meetings" type="checkbox" value="1">
+								<label class="form-check-label" for="meetings">Количество встреч</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<button id="saveBtn" type="submit" class="btn btn-primary btn-sm">Запустить</button>
+						</div>
 					</div>
-					<div class="form-check">
-						<input class="form-check-input" id="distance" name="distance" type="checkbox" value="1">
-						<label class="form-check-label" for="distance">Расстояние</label>
-					</div>
-					<div class="form-check">
-						<input class="form-check-input" id="meetings" name="meetings" type="checkbox" value="1">
-						<label class="form-check-label" for="meetings">Количество встреч</label>
-					</div>
-					<br>
-					<button id="saveBtn" type="submit" class="btn btn-primary btn-sm">Запустить</button>
-					<br>
+
 				</div>
 
 			</form>
@@ -93,20 +97,19 @@
 				<div id="userlist_emptyalert" class="alert alert-info" style="display:none">
 					Нет представителей для отображения
 				</div>
-				<div id="legend" style="display:none">
-					<br>
-					<h5>Легенда:</h5>
-					<img src="marker.png" class="marker" width="30">- Конечная точка
-					<br>
-					<img src="marker2.png" class="marker2" width="18"> - Точка в пути
-					<br>
-					<img src="marker3.jpg" class="marker3" width="18"> - Начальная точка
-				</div>
 			</div>
 
 		</div>
-		<div class="col-sm-12 col-md-8 full_height">
+		<div class="col-sm-12 col-md-9 full_height">
 			<div id="mapid"></div>
+			<div id="legend" style="display:none">
+				<h5>Легенда точек:</h5>
+				<img src="marker.png" class="marker" width="30">- Конечная
+				<!-- <br> -->
+				<img src="marker2.png" class="marker2" width="18"> - Впути
+				<!-- <br> -->
+				<img src="marker3.jpg" class="marker3" width="18"> - Начальная
+			</div>
 		</div>
 	</div>
 
