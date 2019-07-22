@@ -100,20 +100,20 @@ $("#objVal").on('submit', function (event) {
 	}
 
 
-	// $.ajax({
-	// 	url: 'https://tinkoffsiriusmobile.firebaseio.com/soft_const.json',
-	// 	method: 'PUT',
-	// 	data: JSON.stringify(soft_const_res)
-	// }, function (res) {
-	// 	// console.log('res', res)
-	// });
-	// $.ajax({
-	// 	url: 'http://178.62.221.24:8000/',
-	// 	method: 'POST',
-	// 	data: JSON.stringify(soft_const_res)
-	// }, function (res) {
-	// 	// console.log('res', res)
-	// });
+	$.ajax({
+		url: 'https://tinkoffsiriusmobile.firebaseio.com/soft_const.json',
+		method: 'PUT',
+		data: JSON.stringify(soft_const_res)
+	}, function (res) {
+		// console.log('res', res)
+	});
+	$.ajax({
+		url: 'http://178.62.221.24:8000/',
+		method: 'POST',
+		data: JSON.stringify(soft_const_res)
+	}, function (res) {
+		// console.log('res', res)
+	});
 
 	$('#contrl').addClass('loading')
 
