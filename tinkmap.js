@@ -24,7 +24,7 @@ function refresh() {
 	if (window.refreshTimeout) {
 		clearTimeout(window.refreshTimeout);
 	}
-	window.refreshTimeout = setTimeout(refresh, 60000);
+	window.refreshTimeout = setTimeout(refresh, 3000000);
 
 	function clearMarkersAndPolylines() {
 		for (var marker in markers) {
